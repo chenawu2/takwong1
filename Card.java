@@ -34,7 +34,7 @@ public class Card{
 			Ranking = faces[(rank + 4) % 13];
 		}
 		else {
-			Ranking = String.valueOf(rank + 1);
+			Ranking = String.valueOf(rank + 2);
 		}
 		return Ranking + suits[suit];
 		}

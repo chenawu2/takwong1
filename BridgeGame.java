@@ -53,7 +53,7 @@ public class BridgeGame {
 		int roundWinner = 0;
 		boolean hasFirstPlayed = false;
 		while(playerHand.getCardsInHand() > 0){
-			System.out.println("################");
+			System.out.println("###### NEW ROUND START #######");
 			resetRoundCards(roundCards);
 			System.out.println("Player hand = " + playerHand);
 			System.out.println("computer 1 hand = " + compOneHand);
@@ -64,7 +64,10 @@ public class BridgeGame {
 				if (player > 3)
 					player = 0;
 				if (!hasFirstPlayed) {
-					System.out.println("Player " + player + " goes first");
+					if (player == 0)
+						System.out.println("You go first!");
+					else
+						System.out.println("Computer " + player + " goes first!");
 					lastPlayedCard = playerTurn(player,roundCards,null,allPlayerHands);
 					hasFirstPlayed = true;
 					player++;
@@ -77,7 +80,7 @@ public class BridgeGame {
 			for (int i = 0; i < roundCards.length; i++)
 				pile.add(roundCards[i]);
 			System.out.println("Cards played are " + pile);
-			roundWinner = winner(roundCards);
+			roundWinner = winner(roundCards,lastPlayedCard);
 			System.out.println("This is the highest card on the table:" + roundCards[roundWinner]);
 			if (roundWinner == 0 || roundWinner == 2) 
 				playerTeamScore++;
@@ -91,7 +94,6 @@ public class BridgeGame {
 			lastPlayedCard = null;
 			resetRoundCards(roundCards);
 			hasFirstPlayed = false;
-			System.out.println("################");
 		}
 		if (playerTeamScore > compTeamScore)
 			System.out.println("Team You and Computer 2 win");
@@ -137,11 +139,12 @@ public class BridgeGame {
 		}
 		return true;
 	}
-	public static int winner(Card[] cards) {
+	public static int winner(Card[] cards, Card lastPlayedCard) {
+		String suit = lastPlayedCard.getSuit();
 		int winnerRank = -1;
 		int winnerIndex = -1;
 		for (int i = 0; i < cards.length; i++) {
-			if (cards[i].getRank() > winnerRank) {
+			if (cards[i].getRank() > winnerRank && cards[i].getSuit().equals(suit)) {
 				winnerRank = cards[i].getRank();
 				winnerIndex = i;
 			}
