@@ -12,6 +12,8 @@ public class Hands {
 	}
 	
 	public Card getCard(int a){
+		if (a < 0 || a >= cardsInHand)
+			return null;
 		//System.out.println("returning:"+hand[a]);
 		return hand[a];
 	}

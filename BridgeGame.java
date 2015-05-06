@@ -105,12 +105,17 @@ public class BridgeGame {
 
 	public static Card playerTurn(int i, Card[] roundCards, Card lastPlayedCard, Hands[] playerHands) {
 		Card c = null;
+		int z = -1;
 		if (i == 0) {
 			if (roundCards[0] == null) {				
-				System.out.println("Which card would you like to play?");
-				Scanner input = new Scanner(System.in);
-				int z = input.nextInt();
-				c = playerHands[0].getCard(z);
+				while (c == null ){
+					System.out.println("Which card would you like to play?");
+					Scanner input = new Scanner(System.in);
+					z = input.nextInt();
+					c = playerHands[0].getCard(z);
+					if (c == null)
+						System.out.println("Inputted Card Index is not available. Please try again.");
+				}
 				playerHands[0].removeCard(z);
 				roundCards[0] = c;
 				System.out.println("You played " + c);
