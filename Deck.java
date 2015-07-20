@@ -1,6 +1,6 @@
 package bridge;
 import java.util.Random;
-
+//asdf
 public class Deck{
 	private Card[] myDeck;
 	private int next;
