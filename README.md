@@ -1,5 +1,5 @@
 # Spwned_Server
-123123Backend for Spwned, CS498RK Final Project
+BBackend for Spwned, CS498RK Final Project
 
 - [Authentication](#authentication)
   - [Registration](#registration)
